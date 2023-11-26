@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WebProjectProject.Models;
 
 namespace WebProjectProject.Data
 {
@@ -8,5 +9,7 @@ namespace WebProjectProject.Data
         {
             
         }
+
+        public DbSet<Category> Categories { get; set; }
     }
 }
