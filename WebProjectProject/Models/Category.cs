@@ -13,7 +13,7 @@ namespace WebProjectProject.Models
         [Required]
         public string Name { get; set; }
 
-        public string DisplayOrder { get; set; }
+        public int DisplayOrder { get; set; }
 
         // Default value is time now
         public DateTime CreatedDateTime { get; set; } = DateTime.Now;
