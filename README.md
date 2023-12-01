@@ -18,4 +18,5 @@
 1) Override the OnModelCreate() function
 2) Insert data you want to add
 3) Use add-migration to create migration and then update-database to update the database
+
 Or another method is using a sql coded migration system, such as liquibase
