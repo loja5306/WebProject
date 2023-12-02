@@ -12,10 +12,12 @@ namespace WebProjectProject.Models
 
         // Name - is required
         [Required]
+        [MaxLength(30)]
         [DisplayName("Category Name")]
         public string Name { get; set; }
 
         [DisplayName("Display Order")]
+        [Range(1,100, ErrorMessage = "Display Order Must be between 1 and 100.")]
         public int DisplayOrder { get; set; }
 
         // Default value is time now
