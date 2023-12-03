@@ -10,12 +10,13 @@ namespace WebProjectProject.Models
         [Key]
         public int Id { get; set; }
 
-        // Name - is required
+        // Name - is required, max length 30, displayed name is "Category Name"
         [Required]
         [MaxLength(30)]
         [DisplayName("Category Name")]
         public string Name { get; set; }
 
+        // Display order - must be in range [1,100], displayed name is "Display Order"
         [DisplayName("Display Order")]
         [Range(1,100, ErrorMessage = "Display Order Must be between 1 and 100.")]
         public int DisplayOrder { get; set; }
