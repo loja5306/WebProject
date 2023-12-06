@@ -1,0 +1,66 @@
+﻿@page
+@model WebProjectProject_Razor.Pages.Categories.IndexModel
+
+<div class="container">
+    @* class "row" creates a bootstap grid, the class "col-6" means the div covers 6 columns out of the 12 given in a bootstrap grid
+    pt is padding top, pb is padding bottom
+    *@
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">
+                Category List
+            </h2>
+        </div>
+        <div class="col-6 text-end">
+            @* Creates a button that once pressed, links to the page Create in the Category folder *@
+            <a asp-page="/Categories/Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Create New Category
+            </a>
+        </div>
+    </div>
+
+    @* Table to display a list of categories *@
+    <table class="table table-bordered table-striped">
+        @* Table header with column names *@
+        <thead>
+            <tr>
+                <th>
+                    Category Name
+                </th>
+                <th>
+                    Display Order
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @* Iterate over each category in the model and display its name and display name *@
+            @foreach (var obj in Model.CategoryList.OrderBy(u => u.DisplayOrder))
+            {
+                @* Table row for each category *@
+                <tr>
+                    @* Display category name *@
+                    <td>@obj.Name</td>
+                    @* Display category display order *@
+                    <td>
+                        @obj.DisplayOrder
+                    </td>
+                    @* Column for Edit and Delete buttons *@
+                    <td>
+                        @* Button group for Edit and Delete buttons *@
+                        <div class="w-75 btn-group" role="group">
+                            @* Creates 2 buttons for the pages Edit and Delete in the Category folder *@
+                            <a asp-page="/Categories/Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+                            <a asp-page="/Categories/Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">
+                                <i class="bi bi-trash-fill"></i> Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

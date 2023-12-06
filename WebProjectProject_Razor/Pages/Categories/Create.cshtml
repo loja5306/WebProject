@@ -1,0 +1,50 @@
+﻿@page
+@model WebProjectProject_Razor.Pages.Categories.CreateModel
+
+@* The method attribute specifies that the form will use HTTP POST when submitted
+   The action attribute being omitted means the action executed will be the HTTP action linked to this view (i.e. Create)
+*@
+<form method="post">
+    @* Container for the category creation form *@
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Create Category</h2>
+            <hr/>
+        </div>
+        @*Creates a row for the name input field of the form. The asp-for links the label and input to the Name property of the Category model
+          Using the [DisplayName("")] tag in the model file will change the label displayed. The validation tag will validate the input
+          via the validation tags used in the model file as well.
+        *@
+        <div class="mb-3 row p-1">
+            <label asp-for="Category.Name"></label>
+            <input asp-for="Category.Name" class="form-control" />
+            <span asp-validation-for="Category.Name" class="text-danger"></span>
+        </div>
+        @* Input field for display order *@
+        <div class="mb-3 row p-1">
+            <label asp-for="Category.DisplayOrder"></label>
+            <input asp-for="Category.DisplayOrder" class="form-control" />
+            <span asp-validation-for="Category.DisplayOrder" class="text-danger"></span>
+        </div>
+        <div class="row">
+            @* Creates 2 buttons, the first for form submission via the Create HTTP action, the 2nd for executing the
+               Index action
+            *@
+            <div class="col-6 col-md-4">
+                <button type="submit" class="btn btn-primary form-control">Create</button>
+            </div>
+            <div class="col-6 col-md-4">
+                <a asp-page="/Categories/Index" class="btn btn-outline-secondary border form-control">
+                    Back to List
+                </a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        // Include validation scripts
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}

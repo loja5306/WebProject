@@ -1,0 +1,53 @@
+﻿@page
+@model WebProjectProject_Razor.Pages.Categories.EditModel
+
+@* The hidden id field is so the form will submit the id, shouldn't need this if name is 'id' but any other name will need it
+   If not, id will be 0 and so when updating the database, it will treat this as a new entry
+   As the edit action return View() has a Category object as a parameter, the form will automatically fill in previous info
+*@
+
+<form method="post">
+    @* Hidden input field for the category ID *@
+    <input asp-for="Category.Id" hidden />
+
+    @* Container for the category edit form *@
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Edit Category</h2>
+            <hr />
+        </div>
+
+        @* Input field for category name *@
+        <div class="mb-3 row p1">
+            <label asp-for="Category.Name"></label>
+            <input asp-for="Category.Name" class="form-control" />
+            <span asp-validation-for="Category.Name" class="text-danger"></span>
+        </div>
+
+        @* Input field for display order *@
+        <div class="mb-3 row p-1">
+            <label asp-for="Category.DisplayOrder"></label>
+            <input asp-for="Category.DisplayOrder" class="form-control" />
+            <span asp-validation-for="Category.DisplayOrder" class="text-danger"></span>
+        </div>
+
+        @* Buttons for form submission and navigation *@
+        <div class="row">
+            <div class="col-6 col-md-4">
+                <button type="submit" class="btn btn-primary form-control">Update</button>
+            </div>
+            <div class="col-6 col-md-4">
+                <a asp-page="/Categories/Index" class="btn btn-outline-secondary border form-control">
+                    Back to List
+                </a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{
+        // Include validation scripts
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
