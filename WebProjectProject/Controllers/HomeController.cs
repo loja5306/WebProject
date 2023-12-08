@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using WebProjectProject.Models;
+using WebProject.Models;
 
-namespace WebProjectProject.Controllers
+namespace WebProject.Controllers
 {
     public class HomeController : Controller
     {
