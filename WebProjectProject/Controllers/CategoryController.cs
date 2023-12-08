@@ -1,22 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebProject.DataAccess;
+using WebProject.DataAccess.Repository.IRepository;
 using WebProject.Models;
 
 namespace WebProject.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _db;
-        public CategoryController(ApplicationDbContext db)
+        private readonly ICategoryRepository _categoryRepository;
+        public CategoryController(ICategoryRepository db)
         {
-            _db = db;
+            _categoryRepository = db;
         }
 
         // Action to display a list of categories
         public IActionResult Index()
         {
             // Retrieve a list of categories from the database
-            List<Category> objCategoryList = _db.Categories.ToList();
+            List<Category> objCategoryList = _categoryRepository.GetAll().ToList();
             return View(objCategoryList);
         }
 
@@ -38,8 +38,8 @@ namespace WebProject.Controllers
             if (ModelState.IsValid)
             {
                 // Add the category to the database and redirect to the index page
-                _db.Categories.Add(obj);
-                _db.SaveChanges();
+                _categoryRepository.Add(obj);
+                _categoryRepository.Save();
                 TempData["success"] = "Category created successfully";
                 return RedirectToAction("Index");
             }
@@ -55,7 +55,7 @@ namespace WebProject.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _db.Categories.Find(id);
+            Category? categoryFromDb = _categoryRepository.Get(u=>u.Id == id);
             //Category? categoryFromDb2 = _db.Categories.FirstOrDefault(u=>u.Id == id);
             //Category? categoryFromDb3 = _db.Categories.Where(u=>u.Id == id).FirstOrDefault();
             if (categoryFromDb == null)
@@ -72,8 +72,8 @@ namespace WebProject.Controllers
             // Update the category in the database and redirect to the index page
             if (ModelState.IsValid)
             {
-                _db.Categories.Update(obj);
-                _db.SaveChanges();
+                _categoryRepository.Update(obj);
+                _categoryRepository.Save();
                 TempData["success"] = "Category updated successfully";
                 return RedirectToAction("Index");
             }
@@ -89,7 +89,7 @@ namespace WebProject.Controllers
                 return NotFound();
             }
             // Retrieve a category for deletion by ID, 3 different ways of doing so
-            Category? categoryFromDb = _db.Categories.Find(id);
+            Category? categoryFromDb = _categoryRepository.Get(u=>u.Id == id);
             //Category? categoryFromDb2 = _db.Categories.FirstOrDefault(u=>u.Id == id);
             //Category? categoryFromDb3 = _db.Categories.Where(u=>u.Id == id).FirstOrDefault();
             if (categoryFromDb == null)
@@ -105,13 +105,13 @@ namespace WebProject.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            Category? obj = _db.Categories.Find(id);
+            Category? obj = _categoryRepository.Get(u => u.Id == id);
             if (obj == null)
             {
                 return NotFound();
             }
-            _db.Categories.Remove(obj);
-            _db.SaveChanges();
+            _categoryRepository.Remove(obj);
+            _categoryRepository.Save();
             TempData["success"] = "Category deleted successfully";
             return RedirectToAction("Index");
         }
