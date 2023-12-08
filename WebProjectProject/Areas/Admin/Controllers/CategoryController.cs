@@ -3,8 +3,9 @@ using WebProject.DataAccess.Repository;
 using WebProject.DataAccess.Repository.IRepository;
 using WebProject.Models;
 
-namespace WebProject.Controllers
+namespace WebProject.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -56,7 +57,7 @@ namespace WebProject.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _unitOfWork.Category.Get(u=>u.Id == id);
+            Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
             //Category? categoryFromDb2 = _db.Categories.FirstOrDefault(u=>u.Id == id);
             //Category? categoryFromDb3 = _db.Categories.Where(u=>u.Id == id).FirstOrDefault();
             if (categoryFromDb == null)
@@ -90,7 +91,7 @@ namespace WebProject.Controllers
                 return NotFound();
             }
             // Retrieve a category for deletion by ID, 3 different ways of doing so
-            Category? categoryFromDb = _unitOfWork.Category.Get(u=>u.Id == id);
+            Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
             //Category? categoryFromDb2 = _db.Categories.FirstOrDefault(u=>u.Id == id);
             //Category? categoryFromDb3 = _db.Categories.Where(u=>u.Id == id).FirstOrDefault();
             if (categoryFromDb == null)

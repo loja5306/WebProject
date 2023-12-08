@@ -2,8 +2,9 @@
 using System.Diagnostics;
 using WebProject.Models;
 
-namespace WebProject.Controllers
+namespace WebProject.Areas.Customer.Controllers
 {
+    [Area("Customer")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
