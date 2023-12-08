@@ -7,7 +7,7 @@ using WebProject.Models;
 
 namespace WebProject.DataAccess.Repository.IRepository
 {
-    internal interface ICategoryRepository : IRepository<Category>
+    public interface ICategoryRepository : IRepository<Category>
     {
         void Update(Category category);
         void Save();
