@@ -17,7 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="SQL\" />
+    <ProjectReference Include="..\WebProject.DataAccess\WebProject.DataAccess.csproj" />
+    <ProjectReference Include="..\WebProject.Models\WebProject.Models.csproj" />
   </ItemGroup>
 
 </Project>

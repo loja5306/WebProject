@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace WebProjectProject.Models
+namespace WebProject.Models
 {
     // Represents a table in the database
     public class Category
