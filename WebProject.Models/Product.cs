@@ -41,5 +41,7 @@ namespace WebProject.Models
         [ForeignKey("CategoryID")]
         public Category Category { get; set; }
 
+        public string ImageUrl { get; set; }
+
     }
 }
