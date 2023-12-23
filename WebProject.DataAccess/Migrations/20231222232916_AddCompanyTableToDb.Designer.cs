@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebProject.DataAccess;
 
@@ -11,9 +12,11 @@ using WebProject.DataAccess;
 namespace WebProject.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231222232916_AddCompanyTableToDb")]
+    partial class AddCompanyTableToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -256,21 +259,21 @@ namespace WebProject.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDateTime = new DateTime(2023, 12, 23, 22, 20, 58, 841, DateTimeKind.Local).AddTicks(9058),
+                            CreatedDateTime = new DateTime(2023, 12, 22, 23, 29, 16, 168, DateTimeKind.Local).AddTicks(5721),
                             DisplayOrder = 1,
                             Name = "Action"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDateTime = new DateTime(2023, 12, 23, 22, 20, 58, 841, DateTimeKind.Local).AddTicks(9108),
+                            CreatedDateTime = new DateTime(2023, 12, 22, 23, 29, 16, 168, DateTimeKind.Local).AddTicks(5776),
                             DisplayOrder = 2,
                             Name = "SciFi"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedDateTime = new DateTime(2023, 12, 23, 22, 20, 58, 841, DateTimeKind.Local).AddTicks(9110),
+                            CreatedDateTime = new DateTime(2023, 12, 22, 23, 29, 16, 168, DateTimeKind.Local).AddTicks(5778),
                             DisplayOrder = 3,
                             Name = "History"
                         });
@@ -451,9 +454,6 @@ namespace WebProject.DataAccess.Migrations
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("CompanyId")
-                        .HasColumnType("int");
-
                     b.Property<string>("County")
                         .HasColumnType("nvarchar(max)");
 
@@ -466,8 +466,6 @@ namespace WebProject.DataAccess.Migrations
 
                     b.Property<string>("StreetAddress")
                         .HasColumnType("nvarchar(max)");
-
-                    b.HasIndex("CompanyId");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
@@ -532,15 +530,6 @@ namespace WebProject.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("WebProject.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("WebProject.Models.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId");
-
-                    b.Navigation("Company");
                 });
 #pragma warning restore 612, 618
         }
