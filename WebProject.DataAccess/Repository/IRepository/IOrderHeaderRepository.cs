@@ -7,8 +7,8 @@ using WebProject.Models;
 
 namespace WebProject.DataAccess.Repository.IRepository
 {
-    public interface IOrderHeaderRepository : IRepository<OrderDetail>
+    public interface IOrderHeaderRepository : IRepository<OrderHeader>
     {
-        void Update(OrderDetail orderDetail);
+        void Update(OrderHeader orderHeader);
     }
 }
